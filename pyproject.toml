@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smilebrightness"
+version = "0.2.0"
+description = "Dim your screen when you stop smiling, using webcam smile detection."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Ankit Raj" }]
+dependencies = [
+    "opencv-python>=4.8,<5",  # 5.x removed cv2.CascadeClassifier
+    "screen-brightness-control>=0.24",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+smilebrightness = "smilebrightness.cli:main"
+
+[tool.setuptools]
+packages = ["smilebrightness"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
